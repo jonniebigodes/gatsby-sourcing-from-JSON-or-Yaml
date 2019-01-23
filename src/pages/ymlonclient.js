@@ -3,17 +3,40 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import axios from 'axios'
 import yaml from 'js-yaml'
+import uuid from 'uuid'
 class ClientYAML extends Component {
   state = {
+    isError:false,
+    errorMessage:'',
     yamlData: {},
   }
   async componentDidMount() {
-    const ymlfile = await axios.get('./second.yaml')
-    const data = yaml.safeLoad(ymlfile.data)
-    this.setState({ yamlData: data })
+    try {
+      const ymlfile = await axios.get(
+        process.env.NODE_ENV !== 'production'
+          ? './second.yaml'
+          : 'https://hungry-edison-90c8ac.netlify.com/second.yaml'
+      )
+      const data = yaml.safeLoad(ymlfile.data)
+      this.setState({ yamlData: data })
+    } catch (error) {
+      this.setState({isError:true,errorMessage:error})
+      console.log('====================================');
+      console.log(`ERROR ON LOAD DATA:\n${error}`);
+      console.log('====================================');
+    }
+    
   }
   render() {
-    const { yamlData } = this.state
+    const { yamlData,isError,errorMessage } = this.state
+    if(isError){
+      return(
+        <h1>Something went bad</h1>
+      <h3>
+        {errorMessage}
+      </h3>
+      )
+    }
     if (!yamlData.title) {
       return <h1>fetching data! give it a moment</h1>
     }
@@ -22,7 +45,7 @@ class ClientYAML extends Component {
         <SEO title={yamlData.title} />
         <div>
           {yamlData.content.map(data => {
-            return <div>{data.item}</div>
+            return <div key={`content_item_${uuid.v4()}`}>{data.item}</div>
           })}
         </div>
       </Layout>
