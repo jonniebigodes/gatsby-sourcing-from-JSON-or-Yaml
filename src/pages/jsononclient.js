@@ -5,8 +5,8 @@ import SEO from '../components/seo'
 import uuid from 'uuid'
 class ClientJSON extends Component {
   state = {
-    isError:false,
-    errorMessage:'',
+    isError: false,
+    errorMessage: '',
     jsonData: {},
   }
   async componentDidMount() {
@@ -18,21 +18,20 @@ class ClientJSON extends Component {
       )
       this.setState({ jsonData: JSONRequest.data })
     } catch (error) {
-      this.setState({isError:true,errorMessage:error})
-      console.log('====================================');
-      console.log(`ERROR ON LOAD DATA:\n${error}`);
-      console.log('====================================');
+      this.setState({ isError: true, errorMessage: error })
+      console.log('====================================')
+      console.log(`ERROR ON LOAD DATA:\n${error}`)
+      console.log('====================================')
     }
-    
   }
   render() {
-    const { jsonData,isError,errorMessage  } = this.state
-    if(isError){
-      return(
-        <h1>Something went bad</h1>
-      <h3>
-        {errorMessage}
-      </h3>
+    const { jsonData, isError, errorMessage } = this.state
+    if (isError) {
+      return (
+        <div>
+          <h1>Something went bad</h1>
+          <h3>{errorMessage}</h3>
+        </div>
       )
     }
     if (!jsonData.title) {
