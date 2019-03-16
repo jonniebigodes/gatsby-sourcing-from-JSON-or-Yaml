@@ -1,18 +1,12 @@
 import React from 'react'
 import uuid from 'uuid'
-import Layout from '../components/layout'
-import SEO from '../components/seo'
 import { Link } from 'gatsby'
 const basicTemplate = props => {
   const { pageContext } = props
   const { pageContent, links } = pageContext
 
   return (
-    <Layout>
-      <SEO
-        title={`page created using basic json`}
-        keywords={[`gatsby`, `application`, `react`]}
-      />
+    <div style={{ maxWidth: `960px`, margin: `1.45rem` }}>
       <div>
         {pageContent.map(data => {
           return <div key={uuid.v4()}>{data.item}</div>
@@ -27,7 +21,7 @@ const basicTemplate = props => {
           )
         })}
       </div>
-    </Layout>
+    </div>
   )
 }
 export default basicTemplate
