@@ -4,7 +4,7 @@ Gatsby example that uses JSON files and YAML files as a means of sourcing data.
 
 ## Live Version
 
-https://hungry-edison-90c8ac.netlify.com/
+[Live version here](https://relaxed-stallman-db9f95.netlify.com/)
 
 ## Routes
 
