@@ -34,13 +34,13 @@ const IndexPage = () => (
           },
           {
             itemKey: 7,
-            itemPath: `/jsononclient`,
-            text: `JSON on client`,
+            itemPath: `/json-at-buildtime/`,
+            text: `JSON at buildtime`,
           },
           {
             itemKey: 8,
-            itemPath: `/ymlonclient`,
-            text: `YML on client`,
+            itemPath: `/yml-at-buildtime/`,
+            text: `YML at build time`,
           },
         ].map(item => {
           return (
